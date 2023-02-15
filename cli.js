@@ -156,7 +156,11 @@ function getPathToFrame(root, current) {
 function getFigmaFile () {
   return new Promise((resolve) => {
     spinner.start('Fetching Figma file (this might take a while depending on the figma file size)')
-    figmaClient.get(`/files/${config.fileId}`)
+    let figmaFileUrl = `/files/${config.fileId}`;
+    if (config.nodeIds) {
+      figmaFileUrl += `?ids=${config.nodeIds}`
+    }
+    figmaClient.get(figmaFileUrl)
       .then((res) => {
         const endTime = new Date().getTime()
         spinner.succeed()
