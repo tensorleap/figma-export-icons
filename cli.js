@@ -322,7 +322,6 @@ function exportIcons () {
 }
 
 function run () {
-  updateGitIgnore()
   if (argv.c) {
     deleteConfig()
   }
